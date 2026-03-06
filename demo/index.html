@@ -7,6 +7,7 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="styles.css" />
   <meta name="theme-color" content="#1f2933" />
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 </head>
 <body>
   <header class="app-header">
@@ -69,6 +70,7 @@
         <p class="muted" data-i18n="scanQrInfo">
           Demo mode: enter a product ID from the JSON file to simulate QR scan.
         </p>
+        <div id="qrScanner" style="width:100%; max-width:400px; margin-top:1rem;"></div>
         <div class="search-group">
           <input id="qrInput" type="text" placeholder="e.g. CHAIR-001" />
           <button id="qrSubmitBtn" class="btn btn-secondary" data-i18n="open">Open</button>
