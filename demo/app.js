@@ -346,6 +346,7 @@ function initLogin() {
 function initQrPanel() {
   $("scanQrBtn").addEventListener("click", () => {
     $("qrPanel").classList.toggle("hidden");
+    startQrScanner();
   });
 
   $("qrSubmitBtn").addEventListener("click", () => {
