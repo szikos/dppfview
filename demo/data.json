@@ -1,0 +1,135 @@
+{
+  "products": [
+    {
+      "id": "CHAIR-001",
+      "name": "Nordic Oak Dining Chair",
+      "brand": "NordForm",
+      "category": "Dining chair",
+      "material": "Solid oak, water-based lacquer",
+      "dimensions": "W45 × D52 × H85 cm",
+      "weight": "6.5 kg",
+      "warranty": "5 years",
+      "certifications": ["FSC-certified wood", "Low VOC finish"],
+      "lifecycle": [
+        {
+          "title": "Design & engineering",
+          "date": "2023-01-15",
+          "description": "Ergonomic design optimized for long sitting sessions and easy disassembly."
+        },
+        {
+          "title": "Material sourcing",
+          "date": "2023-02-10",
+          "description": "Oak sourced from FSC-certified forests in Sweden."
+        },
+        {
+          "title": "Manufacturing",
+          "date": "2023-03-05",
+          "description": "Manufactured in energy-efficient facility with 40% renewable energy share."
+        },
+        {
+          "title": "Distribution",
+          "date": "2023-04-01",
+          "description": "Shipped flat-packed to minimize transport volume."
+        }
+      ],
+      "circularity": {
+        "repairabilityScore": "8/10",
+        "recycledContent": "15% recycled packaging materials",
+        "recyclability": "Wood and metal parts are separable and recyclable",
+        "notes": "Seat and backrest can be replaced individually. All fasteners are standard metric sizes."
+      },
+      "environment": {
+        "carbonFootprint": "32 kg CO₂e (cradle-to-gate)",
+        "energyUse": "48 kWh per unit",
+        "waterUse": "120 L per unit",
+        "labels": ["EU Ecolabel", "Indoor Air Comfort Gold"]
+      },
+      "provenance": [
+        {
+          "role": "Forest management",
+          "organization": "Nordic Timber Co.",
+          "location": "Västerbotten, Sweden",
+          "date": "2023-01-05"
+        },
+        {
+          "role": "Sawmill & drying",
+          "organization": "Baltic Woodworks",
+          "location": "Riga, Latvia",
+          "date": "2023-01-25"
+        },
+        {
+          "role": "Manufacturing",
+          "organization": "NordForm Assembly Plant",
+          "location": "Gdańsk, Poland",
+          "date": "2023-03-05"
+        },
+        {
+          "role": "Distribution center",
+          "organization": "NordForm EU Hub",
+          "location": "Hamburg, Germany",
+          "date": "2023-04-01"
+        }
+      ]
+    },
+    {
+      "id": "SOFA-002",
+      "name": "Urban Modular Sofa",
+      "brand": "CityLiving",
+      "category": "Sofa",
+      "material": "Steel frame, FSC plywood, recycled polyester fabric",
+      "dimensions": "W220 × D90 × H80 cm",
+      "weight": "48 kg",
+      "warranty": "10 years on frame, 3 years on upholstery",
+      "certifications": ["OEKO-TEX fabric", "FSC plywood"],
+      "lifecycle": [
+        {
+          "title": "Concept & modular design",
+          "date": "2022-09-10",
+          "description": "Modular layout allows replacement of individual modules and covers."
+        },
+        {
+          "title": "Frame production",
+          "date": "2022-10-20",
+          "description": "High-strength steel frame with powder coating for durability."
+        },
+        {
+          "title": "Upholstery & assembly",
+          "date": "2022-11-15",
+          "description": "Covers sewn from recycled polyester fabric with removable zippers."
+        }
+      ],
+      "circularity": {
+        "repairabilityScore": "9/10",
+        "recycledContent": "60% recycled polyester in fabric",
+        "recyclability": "Frame and modules can be separated; covers are fully removable",
+        "notes": "All modules can be reconfigured; spare covers available."
+      },
+      "environment": {
+        "carbonFootprint": "95 kg CO₂e (cradle-to-gate)",
+        "energyUse": "120 kWh per unit",
+        "waterUse": "350 L per unit",
+        "labels": ["OEKO-TEX Standard 100"]
+      },
+      "provenance": [
+        {
+          "role": "Steel sourcing",
+          "organization": "EuroSteel",
+          "location": "Essen, Germany",
+          "date": "2022-09-25"
+        },
+        {
+          "role": "Frame manufacturing",
+          "organization": "CityLiving Metalworks",
+          "location": "Brno, Czech Republic",
+          "date": "2022-10-20"
+        },
+        {
+          "role": "Upholstery",
+          "organization": "CityLiving Textile Studio",
+          "location": "Łódź, Poland",
+          "date": "2022-11-10"
+        }
+      ]
+    }
+  ]
+}
