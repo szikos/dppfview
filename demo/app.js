@@ -361,27 +361,52 @@ function initQrPanel() {
   });
 }
 
+
 function startQrScanner() {
-  const qrScanner = new Html5Qrcode("qrScanner");
-  qrScanner.start(
-    { facingMode: "environment" },
-    { fps: 10, qrbox: 250 },
-    (decodedText) => {
-      const prod = searchProduct(decodedText);
-      if (prod) {
-        setCurrentProduct(prod);
-        $("qrPanel").classList.add("hidden");
-        qrScanner.stop();
-      } else {
-        showToast("QR code not recognized.");
+  if (!Html5Qrcode.getCameras) {
+    showToast("QR scanning not supported on this browser.");
+    $("qrScanner").innerHTML = `<p class="muted">Camera access not available. Try entering the product ID manually.</p>`;
+    return;
+  }
+
+  Html5Qrcode.getCameras()
+    .then((devices) => {
+      if (devices.length === 0) {
+        $("qrScanner").innerHTML = `<p class="muted">No camera found. Try entering the product ID manually.</p>`;
+        return;
       }
-    },
-    (errorMessage) => {}
-  ).catch((err) => {
-    console.error("QR scanner error:", err);
-    showToast("Camera access failed.");
-  });
+
+      const qrScanner = new Html5Qrcode("qrScanner");
+      qrScanner.start(
+        { facingMode: "environment" },
+        {
+          fps: 10,
+          qrbox: { width: 250, height: 250 },
+          aspectRatio: 1.0,
+          disableFlip: true
+        },
+        (decodedText) => {
+          const prod = searchProduct(decodedText);
+          if (prod) {
+            setCurrentProduct(prod);
+            $("qrPanel").classList.add("hidden");
+            qrScanner.stop();
+          } else {
+            showToast("QR code not recognized.");
+          }
+        },
+        (errorMessage) => {}
+      ).catch((err) => {
+        console.error("QR scanner error:", err);
+        $("qrScanner").innerHTML = `<p class="muted">Camera access failed. Try entering the product ID manually.</p>`;
+      });
+    })
+    .catch((err) => {
+      console.error("Camera detection failed:", err);
+      $("qrScanner").innerHTML = `<p class="muted">Camera not available. Try entering the product ID manually.</p>`;
+    });
 }
+
 
 // --- Language selector ---
 function initLanguage() {
