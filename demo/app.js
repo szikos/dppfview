@@ -360,6 +360,28 @@ function initQrPanel() {
   });
 }
 
+function startQrScanner() {
+  const qrScanner = new Html5Qrcode("qrScanner");
+  qrScanner.start(
+    { facingMode: "environment" },
+    { fps: 10, qrbox: 250 },
+    (decodedText) => {
+      const prod = searchProduct(decodedText);
+      if (prod) {
+        setCurrentProduct(prod);
+        $("qrPanel").classList.add("hidden");
+        qrScanner.stop();
+      } else {
+        showToast("QR code not recognized.");
+      }
+    },
+    (errorMessage) => {}
+  ).catch((err) => {
+    console.error("QR scanner error:", err);
+    showToast("Camera access failed.");
+  });
+}
+
 // --- Language selector ---
 function initLanguage() {
   const select = $("languageSelect");
