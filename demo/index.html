@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Furniture DPP Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#1f2933" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header-left">
+      <span class="app-logo">DPP</span>
+      <span class="app-title" data-i18n="appTitle">Furniture Digital Product Passport</span>
+    </div>
+    <div class="app-header-right">
+      <select id="languageSelect" class="language-select">
+        <option value="en">EN</option>
+        <option value="de">DE</option>
+        <option value="fr">FR</option>
+      </select>
+
+      <button id="loginBtn" class="btn btn-ghost" data-i18n="login">Login</button>
+      <button id="logoutBtn" class="btn btn-ghost hidden" data-i18n="logout">Logout</button>
+
+      <button id="installBtn" class="btn btn-primary hidden" data-i18n="installApp">
+        Install App
+      </button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <aside class="sidebar">
+      <section class="sidebar-section">
+        <h2 data-i18n="productSearch">Product</h2>
+        <div class="search-group">
+          <input id="productSearchInput" type="text" placeholder="Search by name or ID" />
+          <button id="productSearchBtn" class="btn btn-secondary" data-i18n="search">Search</button>
+        </div>
+        <button id="scanQrBtn" class="btn btn-outline" data-i18n="scanQr">Scan QR Code</button>
+      </section>
+
+      <section class="sidebar-section">
+        <h2 data-i18n="recentlyViewed">Recently viewed</h2>
+        <ul id="recentList" class="recent-list"></ul>
+      </section>
+    </aside>
+
+    <section class="content">
+      <div id="loginPanel" class="panel hidden">
+        <h2 data-i18n="loginTitle">User login</h2>
+        <p class="muted" data-i18n="loginOptional">Login is optional and only used to personalize your view.</p>
+        <form id="loginForm" class="form">
+          <label>
+            <span data-i18n="email">Email</span>
+            <input type="email" id="emailInput" required />
+          </label>
+          <label>
+            <span data-i18n="password">Password</span>
+            <input type="password" id="passwordInput" required />
+          </label>
+          <button type="submit" class="btn btn-primary" data-i18n="login">Login</button>
+        </form>
+      </div>
+
+      <div id="qrPanel" class="panel hidden">
+        <h2 data-i18n="scanQrTitle">Scan QR code</h2>
+        <p class="muted" data-i18n="scanQrInfo">
+          Demo mode: enter a product ID from the JSON file to simulate QR scan.
+        </p>
+        <div class="search-group">
+          <input id="qrInput" type="text" placeholder="e.g. CHAIR-001" />
+          <button id="qrSubmitBtn" class="btn btn-secondary" data-i18n="open">Open</button>
+        </div>
+      </div>
+
+      <div id="productPanel" class="panel">
+        <div class="product-header">
+          <div>
+            <h1 id="productName">–</h1>
+            <p id="productId" class="muted"></p>
+          </div>
+          <div class="product-meta">
+            <span id="productBrand" class="badge"></span>
+            <span id="productCategory" class="badge badge-outline"></span>
+          </div>
+        </div>
+
+        <nav class="tabs">
+          <button class="tab active" data-tab="dashboard" data-i18n="tabDashboard">Dashboard</button>
+          <button class="tab" data-tab="lifecycle" data-i18n="tabLifecycle">Lifecycle</button>
+          <button class="tab" data-tab="circularity" data-i18n="tabCircularity">Circularity</button>
+          <button class="tab" data-tab="environment" data-i18n="tabEnvironment">Environment</button>
+          <button class="tab" data-tab="provenance" data-i18n="tabProvenance">Provenance</button>
+        </nav>
+
+        <section id="tab-dashboard" class="tab-panel active">
+          <div class="grid-2">
+            <div>
+              <h3 data-i18n="overview">Overview</h3>
+              <ul class="info-list">
+                <li><strong data-i18n="material">Material:</strong> <span id="productMaterial"></span></li>
+                <li><strong data-i18n="dimensions">Dimensions:</strong> <span id="productDimensions"></span></li>
+                <li><strong data-i18n="weight">Weight:</strong> <span id="productWeight"></span></li>
+                <li><strong data-i18n="warranty">Warranty:</strong> <span id="productWarranty"></span></li>
+              </ul>
+            </div>
+            <div>
+              <h3 data-i18n="certifications">Certifications</h3>
+              <ul id="productCerts" class="badge-list"></ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="tab-lifecycle" class="tab-panel">
+          <h3 data-i18n="lifecycleTimeline">Lifecycle timeline</h3>
+          <ol id="lifecycleTimeline" class="timeline"></ol>
+        </section>
+
+        <section id="tab-circularity" class="tab-panel">
+          <h3 data-i18n="circularityTitle">Circularity</h3>
+          <div class="grid-2">
+            <div>
+              <ul class="info-list">
+                <li><strong data-i18n="repairability">Repairability score:</strong> <span id="repairScore"></span></li>
+                <li><strong data-i18n="recycledContent">Recycled content:</strong> <span id="recycledContent"></span></li>
+                <li><strong data-i18n="recyclability">Recyclability:</strong> <span id="recyclability"></span></li>
+              </ul>
+            </div>
+            <div>
+              <h4 data-i18n="circularityNotes">Notes</h4>
+              <p id="circularityNotes" class="muted"></p>
+            </div>
+          </div>
+        </section>
+
+        <section id="tab-environment" class="tab-panel">
+          <h3 data-i18n="environmentalData">Environmental data</h3>
+          <div class="grid-2">
+            <div>
+              <ul class="info-list">
+                <li><strong data-i18n="carbonFootprint">Carbon footprint:</strong> <span id="carbonFootprint"></span></li>
+                <li><strong data-i18n="energyUse">Energy use in production:</strong> <span id="energyUse"></span></li>
+                <li><strong data-i18n="waterUse">Water use:</strong> <span id="waterUse"></span></li>
+              </ul>
+            </div>
+            <div>
+              <h4 data-i18n="envLabels">Environmental labels</h4>
+              <ul id="envLabels" class="badge-list"></ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="tab-provenance" class="tab-panel">
+          <h3 data-i18n="provenanceChain">Provenance chain</h3>
+          <ul id="provenanceList" class="provenance-list"></ul>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
